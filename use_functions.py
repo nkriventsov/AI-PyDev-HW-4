@@ -31,7 +31,7 @@ def print_lines():
     print('-' * 30)
 
 def continuation():
-    result = input('Для продолжения "Ввод"!')
+    result = input('Для продолжения нажмите "Ввод"!')
     while result != '':
         result = input('Для продолжения нажмите "Ввод"!')
 
