@@ -27,55 +27,58 @@
 При выполнении задания можно пользоваться любыми средствами
 Для реализации основного меню можно использовать пример ниже или написать свой
 """
-def print_lines():
-    print('-' * 30)
 
-def continuation():
-    result = input('Для продолжения нажмите "Ввод"!')
-    while result != '':
+def personal_account():
+    def print_lines():
+        print('-' * 30)
+
+    def continuation():
         result = input('Для продолжения нажмите "Ввод"!')
+        while result != '':
+            result = input('Для продолжения нажмите "Ввод"!')
 
-balance = 0
-purchase_history = {}
+    balance = 0
+    purchase_history = {}
 
-while True:
-    print(f'\nТекущий баланс: {balance}\n')
-    print_lines()
-    print('1. Пополнение счета')
-    print('2. Покупка')
-    print('3. История покупок')
-    print('4. Выход')
-    print_lines()
-    choice = input(f'\nВыберите пункт меню: ')
-    if choice == '1':
-        add_balance = int(input('Введите сумму пополнения: '))
-        if add_balance <= 0:
-            print('Пополнение возможно только положительной суммой!')
-            continuation()
-        else:
-            balance += add_balance
-    elif choice == '2':
-        new_purchase_price = int(input(f'\nВведите сумму покупки положительным значением: '))
-        if new_purchase_price <= 0:
-            print('Введение суммы покупки возможно только положительной суммой!')
-            continuation()
-        else:
-            if new_purchase_price > balance:
-                print(f'Недостаточно средств - на счету {balance}!')
+    while True:
+        print(f'\nТекущий баланс: {balance}\n')
+        print_lines()
+        print('1. Пополнение счета')
+        print('2. Покупка')
+        print('3. История покупок')
+        print('4. Выход')
+        print_lines()
+        choice = input(f'\nВыберите пункт меню: ')
+        if choice == '1':
+            add_balance = int(input('Введите сумму пополнения: '))
+            if add_balance <= 0:
+                print('Пополнение возможно только положительной суммой!')
                 continuation()
             else:
-                purchased_item_name = input('Введите наименование покупки: ')
-                purchase_history.update({purchased_item_name: new_purchase_price})
-                balance -= new_purchase_price
-    elif choice == '3':
-        print_lines()
-        print("{:<20} {:<10}".format('Наименование', 'Стоимость'))
-        print_lines()
-        for k, v in purchase_history.items():
-            print('{:<20} {:<10}'.format(k, v))
-        print_lines()
-        continuation()
-    elif choice == '4':
-        break
-    else:
-        print('Неверный пункт меню')
+                balance += add_balance
+        elif choice == '2':
+            new_purchase_price = int(input(f'\nВведите сумму покупки положительным значением: '))
+            if new_purchase_price <= 0:
+                print('Введение суммы покупки возможно только положительной суммой!')
+                continuation()
+            else:
+                if new_purchase_price > balance:
+                    print(f'Недостаточно средств - на счету {balance}!')
+                    continuation()
+                else:
+                    purchased_item_name = input('Введите наименование покупки: ')
+                    purchase_history.update({purchased_item_name: new_purchase_price})
+                    balance -= new_purchase_price
+        elif choice == '3':
+            print_lines()
+            print("{:<20} {:<10}".format('Наименование', 'Стоимость'))
+            print_lines()
+            for k, v in purchase_history.items():
+                print('{:<20} {:<10}'.format(k, v))
+            print_lines()
+            continuation()
+        elif choice == '4':
+            break
+        else:
+            print('Неверный пункт меню')
+
